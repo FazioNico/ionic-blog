@@ -1,4 +1,9 @@
 <ion-toolbar color="primary">
   <ng-content></ng-content>
   <ion-title class="ion-text-capitalize">{{title}}</ion-title>
+  <ion-buttons *ngIf="action" slot="end">
+    <ion-button (click)="openModal()">
+      <ion-icon [name]="action"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>

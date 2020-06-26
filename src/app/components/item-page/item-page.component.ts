@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/posts/post.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-item-page',
@@ -14,7 +15,8 @@ export class ItemPageComponent {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _api: PostService
+    private _api: PostService,
+    private _modalCtrl: ModalController
   ) { }
   
   async ionViewWillEnter() {
@@ -25,6 +27,11 @@ export class ItemPageComponent {
     const item = await this._api.getItemById(id);
     if (!item) return this._router.navigate(['../']);
     this.post = item;
+  }
+
+  async updateDate($event) {
+    if ($event !== 'update') return;
+    this.post  = await this._api.getItemById(this.post.id);
   }
 
 }

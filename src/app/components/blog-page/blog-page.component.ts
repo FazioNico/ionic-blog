@@ -27,4 +27,5 @@ export class BlogPageComponent implements OnInit {
     // trigger complete() event to stop infini scroll animation and display new items
     $event.target.complete();
   }
+
 }

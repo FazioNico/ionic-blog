@@ -1,5 +1,5 @@
 <ion-header>
-  <app-header [title]="post?.title">
+  <app-header (onAction)="updateDate($event)" [title]="post?.title" [post]="post" action="pencil-outline">
     <ion-back-button slot="start"></ion-back-button>
   </app-header>
 </ion-header>

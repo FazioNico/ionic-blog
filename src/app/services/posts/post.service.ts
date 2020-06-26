@@ -56,6 +56,25 @@ export class PostService {
     };
   }
 
+  async update(data) {
+    const url = 'https://jsonplaceholder.typicode.com/posts/' + data.id;
+    const updatePost = await this._http.put<{id: number}>(url, data).pipe(first()).toPromise();
+    this._posts$.next([
+      ...this._posts$.value.filter(post => post.id !== updatePost.id),
+      updatePost
+    ]);
+  }
+
+  async create(data) {
+    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const newPost = await this._http.post<{id?: string}>(url, data).pipe(first()).toPromise().catch(err => err);
+    if (!newPost?.id) return;
+    this._posts$.next([
+      newPost,
+      ...this._posts$.value
+    ]);
+  }
+
   // we can create an other service to split alert logic
   // and then inject in each services
   private async _displayAlert(message: string) {
