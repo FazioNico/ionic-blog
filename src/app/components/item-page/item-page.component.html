@@ -1,0 +1,76 @@
+<ion-header>
+  <app-header [title]="post?.title">
+    <ion-back-button slot="start"></ion-back-button>
+  </app-header>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid *ngIf="post; else noPost">
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary">
+          <h1 class="ion-text-capitalize">{{post?.title}}</h1>
+        </ion-text>
+        <ion-text>
+          <p><i>publish by {{post?.user?.name}}</i></p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          <p>
+            {{post?.body}}
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="post?.comments">
+      <ion-col>
+        <ion-list class="comments">
+          <ion-list-header>
+            <ion-text>
+              <h2>Comments</h2>
+            </ion-text>
+          </ion-list-header>
+          <ion-item *ngFor="let comment of post?.comments">
+            <ion-text>
+              <p>
+                <ion-text class="ion-text-capitalize" color="primary">{{comment?.name}}</ion-text>
+              </p>
+              <p>by user {{comment?.email}}</p>
+              <p>
+                {{comment?.body}}
+              </p>
+            </ion-text>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ng-template #noPost>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-padding-vertical">
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-padding-top">
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>    
+  </ng-template>
+
+</ion-content>

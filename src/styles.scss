@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.comments, .comments ion-item {
+  background-color:var(--ion-color-light);
+  --background: var(--ion-color-light);
+}
+@media (max-width: 991.98px) {
+  .ion-hide-lg-down {
+    display: none !important;
+  }
+}

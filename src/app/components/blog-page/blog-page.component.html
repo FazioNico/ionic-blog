@@ -1,0 +1,61 @@
+<ion-header>
+  <app-header title="Blog"></app-header>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="posts$|async as posts; else noPosts" size-md="12" size-lg="8">
+        <ion-card [routerLink]="post?.id" *ngFor="let post of posts.slice(0, max)">
+          <ion-card-header>
+            <ion-card-title color="primary" class="ion-text-capitalize">
+              {{post?.title}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{post?.body}}
+          </ion-card-content>
+        </ion-card>
+        <ion-text *ngIf="posts.length <= 0">
+          <p><i>no posts to display</i></p>
+        </ion-text>
+      </ion-col>
+      <ng-template #noPosts>
+        <ion-col>
+          <ion-card [routerLink]="post?.id" *ngFor="let post of [0,1,2,3,4,5,6,7,8,9]">
+            <ion-card-header>
+              <ion-card-title color="primary" class="ion-text-capitalize">
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-skeleton-text animated></ion-skeleton-text>
+              <ion-skeleton-text animated></ion-skeleton-text>
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ng-template>
+      <ion-col class="ion-hide-lg-down" size="12" size-lg="4">
+        <ion-text>
+          <p>
+            <b>Bienvenu sur mon super Blog</b>
+          </p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores blanditiis excepturi eius recusandae accusantium deserunt iste labore. Corrupti ipsum ad similique. Harum quia nesciunt itaque officiis debitis reprehenderit facere fugiat?</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button class="ion-padding" (click)="max = max + 10">load more</ion-button>
+      </ion-col>
+    </ion-row> -->
+  </ion-grid>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
