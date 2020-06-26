@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BlogPageComponent } from './components/blog-page/blog-page.component';
-import { ItemPageComponent } from './components/item-page/item-page.component';
+import { BlogPageComponent } from './features/home/components/blog-page/blog-page.component';
+import { ItemPageComponent } from './features/detail/components/item-page/item-page.component';
 
 
 const routes: Routes = [
@@ -10,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: BlogPageComponent
+        loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule),
       },
       {
         path: ':id',
-        component: ItemPageComponent
+        loadChildren: () => import('./features/detail/detail.module').then(m => m.DetailModule),
       }
     ]
   }

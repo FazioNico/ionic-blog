@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from 'src/app/services/posts/post.service';
+import { PostService } from '../../../../shared/services/posts/post.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({

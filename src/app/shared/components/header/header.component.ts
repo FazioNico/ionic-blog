@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { PostFormComponent } from '../post-form/post-form.component';
+import { PostFormComponent } from '../../../components/post-form/post-form.component';
 
 @Component({
   selector: 'app-header',

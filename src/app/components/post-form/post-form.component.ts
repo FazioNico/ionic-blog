@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PostService } from 'src/app/services/posts/post.service';
+import { PostService } from '../../shared/services/posts/post.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
